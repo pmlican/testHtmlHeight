@@ -90,9 +90,9 @@ class ViewController: UIViewController {
         
     }
     func createModels() -> [MyModel] {
-        let m1 = MyModel(content: testHTML, isShow: false)
-        let m2 = MyModel(content: "123", isShow: false)
-        let m3 = MyModel(content: "1123水电费水电费水电费第三方对方水电费是否水电费水电费胜多负少的1123水电费水电费水电费第三方对方水电费是否水电费水电费胜多负少的1123水电费水电费水电费第三方对方水电费是否水电费水电费胜多负少的", isShow: false)
+        let m1 = MyModel(content: "1231231", isShow: false)
+        let m2 = MyModel(content: "今晚吃pizza", isShow: false)
+        let m3 = MyModel(content: "时时彩123时时彩123时时彩123时时彩123时时彩123时时彩123时时彩123时时彩123时时彩123时时彩123时时彩123时时彩123时时彩123时时彩123时时彩123时时彩123时时彩123时时彩123时时彩123时时彩123时时彩123时时彩123时时彩123时时彩123时时彩123时时彩123时时彩123时时彩123时时彩123时时彩123时时彩123时时彩123时时彩123时时彩123时时彩123时时彩123时时彩123时时彩123时时彩123时时彩123时时彩123时时彩123时时彩123时时彩123时时彩123时时彩123时时彩123时时彩123", isShow: false)
         return [m1, m2, m3]
     }
 
@@ -117,7 +117,7 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
         btn.addTarget(self, action: #selector(clickBtn(_:)), for: .touchUpInside)
         btn.tag = section
         btn.setTitleColor(UIColor.black, for: .normal)
-        btn.backgroundColor = UIColor.systemPurple
+        btn.backgroundColor = UIColor.white
         return btn
     }
     
@@ -167,6 +167,7 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
         // 发请求数据
         request(index: sender.tag)
     }
+    // 首次加载
     func request(index: Int)  {
         let model = createModels()[index]
         dataArr[index].content = model.content
@@ -176,7 +177,7 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
         tableView.reloadSections(IndexSet(integer: index), with: .none)
 
     }
-    
+    // 切换按钮加载数据
     func request1(index: Int, section: Int) {
         dataArr[section].content = createModels()[index].content
         dataArr[section].state = .loading

@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		FBBB9BEC243884F300774F9D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBBB9BEB243884F300774F9D /* AppDelegate.swift */; };
-		FBBB9BEE243884F300774F9D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBBB9BED243884F300774F9D /* SceneDelegate.swift */; };
 		FBBB9BF0243884F300774F9D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBBB9BEF243884F300774F9D /* ViewController.swift */; };
 		FBBB9BF3243884F300774F9D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FBBB9BF1243884F300774F9D /* Main.storyboard */; };
 		FBBB9BF5243884F400774F9D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FBBB9BF4243884F400774F9D /* Assets.xcassets */; };
@@ -19,7 +18,6 @@
 /* Begin PBXFileReference section */
 		FBBB9BE8243884F300774F9D /* testHtml.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = testHtml.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FBBB9BEB243884F300774F9D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		FBBB9BED243884F300774F9D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		FBBB9BEF243884F300774F9D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		FBBB9BF2243884F300774F9D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		FBBB9BF4243884F400774F9D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -59,7 +57,6 @@
 			isa = PBXGroup;
 			children = (
 				FBBB9BEB243884F300774F9D /* AppDelegate.swift */,
-				FBBB9BED243884F300774F9D /* SceneDelegate.swift */,
 				FBBB9BEF243884F300774F9D /* ViewController.swift */,
 				FBBB9BFF24388B7300774F9D /* MyCell.swift */,
 				FBBB9BF1243884F300774F9D /* Main.storyboard */,
@@ -144,7 +141,6 @@
 				FBBB9BF0243884F300774F9D /* ViewController.swift in Sources */,
 				FBBB9C0024388B7300774F9D /* MyCell.swift in Sources */,
 				FBBB9BEC243884F300774F9D /* AppDelegate.swift in Sources */,
-				FBBB9BEE243884F300774F9D /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -220,7 +216,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -274,7 +270,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;

@@ -34,16 +34,15 @@ class MyCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     // 这个用来展示内容
-    lazy var webView: UIWebView = {
-       let webview = UIWebView()
-//        webview.navigationDelegate = self
-        webview.delegate = self
+    lazy var webView: WKWebView = {
+       let webview = WKWebView()
+        webview.navigationDelegate = self
         return webview
     }()
     // 要用一个bgview来获取高度，不然在切换loadHTMLString内容时，webview加载完成后获取的高度不变
-    lazy var bgWebView: UIWebView = {
-       let webview = UIWebView()
-        webview.delegate = self
+    lazy var bgWebView: WKWebView = {
+       let webview = WKWebView()
+        webview.navigationDelegate = self
         return webview
     }()
     lazy var indicator: UIActivityIndicatorView = {
@@ -76,24 +75,24 @@ class MyCell: UITableViewCell {
         contentView.addSubview(indicator)
         indicator.frame = CGRect(x: 0, y: btnH, width: UIScreen.main.bounds.width, height: 30)
     
-        bgWebView.frame = CGRect(x: 15, y: btnH, width: UIScreen.main.bounds.width - 30, height: 1)
-        webView.frame = CGRect(x: 15, y: btnH, width: UIScreen.main.bounds.width - 30, height: 1)
+        bgWebView.frame = CGRect(x: 0, y: btnH, width: UIScreen.main.bounds.width, height: 0)
+        webView.frame = CGRect(x: 0, y: btnH, width: UIScreen.main.bounds.width, height: 0)
 
-//        oberseve = webView.observe(\WKWebView.scrollView.contentSize, options:[.new], changeHandler: { (obj, change) in
-////            if let height = change.newValue?.height {
-////                print("chang--\(height)")
-////            }
-////            obj.evaluateJavaScript("document.body.scrollHeight") { (value, error) in
-////                print("document.body.scrollHeight ==》",value)
-////            }
-////            obj.evaluateJavaScript("document.body.offsetHeight") { (value, error) in
-////                print("document.body.offsetHeight ==》",value)
-////            }
-//
-//        })
+        oberseve = webView.observe(\WKWebView.scrollView.contentSize, options:[.new], changeHandler: { (obj, change) in
+//            if let height = change.newValue?.height {
+//                print("chang--\(height)")
+//            }
+//            obj.evaluateJavaScript("document.body.scrollHeight") { (value, error) in
+//                print("document.body.scrollHeight ==》",value)
+//            }
+//            obj.evaluateJavaScript("document.body.offsetHeight") { (value, error) in
+//                print("document.body.offsetHeight ==》",value)
+//            }
+
+        })
     }
     deinit {
-//        oberseve = nil
+        oberseve = nil
     }
     @objc func clickBtn(_ sender: UIButton) {
         clickBlock?(sender.tag)
@@ -128,35 +127,6 @@ extension String {
     }
 }
 
-extension MyCell: UIWebViewDelegate {
-    func webViewDidFinishLoad(_ webView: UIWebView) {
-        if webView == bgWebView {
-//            webView.evaluateJavaScript("document.body.scrollHeight", completionHandler: {[weak self] value, error in
-//                print("webview加载完成 - document.body.scrollHeight ==》",value)
-//                if let height = value as? CGFloat {
-//                    self?.model?.cellHeight = (height + 50.0)
-//                    // 因为改变了webview高度后，但后续内容改变时，获取的高度也不变
-//                    self?.webView.frame.size.height = height
-//                }
-//                self?.model?.state = .loaded
-//                self?.webviewLoadedBlock?()
-//                self?.indicator.stopAnimating()
-//            })
-            if let str = webView.stringByEvaluatingJavaScript(from: "document.body.scrollHeight")  {
-               let height = CGFloat(Double(str) ?? 0)
-                print("webview加载完成 - document.body.scrollHeight ==》",height)
-                    self.model?.cellHeight = (height + 50.0)
-                // 因为改变了webview高度后，但后续内容改变时，获取的高度也不变
-                    self.webView.frame.size.height = height
-                
-                self.model?.state = .loaded
-                self.webviewLoadedBlock?()
-                self.indicator.stopAnimating()
-            }
-        }
-    }
-}
-
 extension MyCell: WKNavigationDelegate{
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
 //        print("webview加载完成\(webView.scrollView.contentSize.height)")
@@ -186,19 +156,19 @@ extension MyCell: WKNavigationDelegate{
 //                self?.webviewLoadedBlock?()
 //            })
 //        })
-//        if webView == bgWebView {
-//            webView.evaluateJavaScript("document.body.scrollHeight", completionHandler: {[weak self] value, error in
-//                print("webview加载完成 - document.body.scrollHeight ==》",value)
-//                if let height = value as? CGFloat {
-//                    self?.model?.cellHeight = (height + 50.0)
-//                    // 因为改变了webview高度后，但后续内容改变时，获取的高度也不变
-//                    self?.webView.frame.size.height = height
-//                }
-//                self?.model?.state = .loaded
-//                self?.webviewLoadedBlock?()
-//                self?.indicator.stopAnimating()
-//            })
-//        }
+        if webView == bgWebView {
+            webView.evaluateJavaScript("document.body.scrollHeight", completionHandler: {[weak self] value, error in
+                print("webview加载完成 - document.body.scrollHeight ==》",value)
+                if let height = value as? CGFloat {
+                    self?.model?.cellHeight = (height + 50.0)
+                    // 因为改变了webview高度后，但后续内容改变时，获取的高度也不变
+                    self?.webView.frame.size.height = height
+                }
+                self?.model?.state = .loaded
+                self?.webviewLoadedBlock?()
+                self?.indicator.stopAnimating()
+            })
+        }
         
     }
 }
